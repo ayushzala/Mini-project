@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <a href="home.html"></a>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .timer {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .view-ad-button {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Your Website</h1>
+            <nav>
+                <ul>
+                   <li><a href="#" onclick="startTimer(10)">View Ad (10s)</a></li>
+                    <li><a href="#" onclick="startTimer(20)">View Ad (20s)</a></li>
+                    <li><a href="#" onclick="startTimer(15)">View Ad (15s)</a></li>
+                    <li><a href="#" onclick="startTimer(30)">View Ad (30s)</a></li>
+                
+                
+                    <!--<li><a href="ad_page.html" target="_blank">View Ad (10s)</a></li>
+                    <li><a href="ad_page.html" target="_blank">View Ad (20s)</a></li>
+                    <li><a href="ad_page.html" target="_blank">View Ad (15s)</a></li>
+                    <li><a href="ad_page.html" target="_blank">View Ad (30s)</a></li>-->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <div class="timer" id="timer">Click a button to view an ad</div>
+            <div class="view-ad-button">
+                <button id="viewAdButton" onclick="viewAd()">View Ad</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let seconds = 0;
+        let timerInterval;
+
+        function startTimer(duration) {
+            clearInterval(timerInterval);
+            seconds = duration;
+            updateTimerDisplay();
+            document.getElementById('viewAdButton').disabled = false;
+        }
+
+        function updateTimerDisplay() {
+            const timerElement = document.getElementById('timer');
+            timerElement.textContent = `Ad duration: ${seconds} seconds`;
+        }
+
+        function viewAd() {
+            if (seconds > 0) {
+                document.getElementById('viewAdButton').disabled = true;
+                timerInterval = setInterval(decrementTimer, 1000);
+            }
+        }
+
+        function decrementTimer() {
+            seconds--;
+            updateTimerDisplay();
+
+            if (seconds === 0) {
+                clearInterval(timerInterval);
+                document.getElementById('viewAdButton').disabled = false;
+                alert('Ad viewing time is up.');
+                updateTimerDisplay();
+            }
+        }
+    </script>
+</body>
+</html>

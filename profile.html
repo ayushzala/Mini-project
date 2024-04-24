@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Profile Page </title>
+    <style>  
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-color: rgb(25,25,69);
+    }
+     #back {
+        background:  #02749a;
+        color: aliceblue;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+        margin: 0;
+        cursor: pointer;
+        border-radius: 7px;
+        }
+        h1, h2{
+            color: aliceblue;
+            position: relative;
+            left: 180px;
+            top: 55px;
+        }
+.profile{
+    float:left;
+}
+#pass{
+    background:  #02749a;
+        color: aliceblue;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+        margin: 0;
+        cursor: pointer;
+        border-radius: 7px;
+        
+        }
+#pass{
+    position: relative;
+    top:20Px;
+}
+      
+        </style>
+</head>
+<body>
+    
+        <button id="back"onclick="goBack()" >Go Back</button>
+        <br><br><br><br><br>
+        <div class="profile">
+            <img src="profile.png" alt="profile Image" max-width="300px" height="300px"></ing>
+        </div>
+<h1 > Your Name : XYZ </h1><br><br>
+<h1> Your Username : XYZ </h1>
+<br><br><br>
+<h2>
+    Forgotten Password!!
+</h2>
+<center>
+<button id="pass" > Change Password </button>
+</center>
+    </body>
+    <script>function goBack() {
+        window.history.back();
+      }
+      </script>
+    
+</body>
+</html>

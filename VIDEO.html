@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Video </title>
+
+    <style>
+        /* Reset some default styles for consistency */
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply styles to the header */
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Apply styles to the content */
+        .content {
+            text-align: center;
+            padding: 40px 0;
+        }  
+
+        .timer {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .view-ad-button {
+            text-align: center;
+        }
+
+        #viewAdButton {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #viewAdButton:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1> </h1>
+            <nav>
+                <ul>
+                   <li><a href="#" onclick="startTimer(10)">View Ad (10s)</a></li>
+                    <li><a href="#" onclick="startTimer(20)">View Ad (20s)</a></li>
+                    <li><a href="#" onclick="startTimer(15)">View Ad (15s)</a></li>
+                    <li><a href="#" onclick="startTimer(30)">View Ad (30s)</a></li>
+                
+                
+                    <!--<li><a href="ad_page.html" target="_blank">View Ad (10s)</a></li>
+                    <li><a href="ad_page.html" target="_blank">View Ad (20s)</a></li>
+                    <li><a href="ad_page.html" target="_blank">View Ad (15s)</a></li>
+                    <li><a href="ad_page.html" target="_blank">View Ad (30s)</a></li>-->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <div class="timer" id="timer">Click a button to view an ad</div>
+            <div class="view-ad-button">
+                <button id="viewAdButton" onclick="viewAd()">View Ad</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let seconds = 0;
+        let timerInterval;
+        let originalPageURL; // Variable to store the original page URL
+    
+        function startTimer(duration, originalURL) {
+            clearInterval(timerInterval);
+            seconds = duration;
+            updateTimerDisplay();
+            document.getElementById('viewAdButton').disabled = false;
+            originalPageURL = "VIDEO.html"; // Store the original page URL
+        }
+    
+        function updateTimerDisplay() {
+            const timerElement = document.getElementById('timer');
+            timerElement.textContent = `Ad duration: ${seconds} seconds`;
+        }
+    
+        function viewAd() {
+            if (seconds > 0) {
+                document.getElementById('viewAdButton').disabled = true;
+                timerInterval = setInterval(decrementTimer, 1000);
+    
+                // Open a YouTube video in a new tab (replace 'YOUR_YOUTUBE_VIDEO_URL' with the actual URL)
+                window.open('https://www.bing.com/videos/riverview/relatedvideo?&q=videos+of+any+ads&&mid=9E57852E6D74FAB928C69E57852E6D74FAB928C6&&FORM=VRDGAR', '_blank');
+            }
+        }
+    
+        function decrementTimer() {
+            seconds--;
+            updateTimerDisplay();
+    
+            if (seconds === 0) {
+                clearInterval(timerInterval);
+                document.getElementById('viewAdButton').disabled = false;
+    
+                // Show the success message
+                showSuccessMessage();
+    
+                // Return to the original page after a brief delay
+                setTimeout(returnToOriginalPage, 2000); // 2000 milliseconds (2 seconds)
+            }
+        }
+    
+        function showSuccessMessage() {
+            const successMessage = document.createElement('div');
+            successMessage.textContent = 'Your coin added successfully!';
+            successMessage.style.color = 'green';
+            successMessage.style.fontSize = '18px';
+            document.body.appendChild(successMessage);
+        }
+    
+        function returnToOriginalPage() {   
+            // Return to the original page and display the message    
+            window.location.href = originalPageURL;                     
+        }
+        
+    </script>
+</body>
+</html>
